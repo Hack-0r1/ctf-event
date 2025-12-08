@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Dashboard</h1>
+    <div id="status"></div>
+    <p class="hint">
+      Hint: Check your <code>role</code> cookie. Maybe change it?
+    </p>
+  </div>
+
+  <script>
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    const statusDiv = document.getElementById('status');
+    const role = getCookie('role') || 'guest';
+
+    if (role === 'admin') {
+      statusDiv.innerHTML = `
+        <p>You are logged in as: <strong>admin</strong></p>
+        <p>Welcome to the admin dashboard!</p>
+        <p><strong>Flag:</strong> <code>FLAG{COOKIE_PRIV_ESC}</code></p>
+      `;
+    } else {
+      statusDiv.innerHTML = `
+        <p>You are logged in as: <strong>${role}</strong></p>
+        <p>Only admins can see the secret flag here.</p>
+        <p>Try changing your <code>role</code> cookie value to <code>admin</code>.</p>
+      `;
+    }
+  </script>
+</body>
+</html>

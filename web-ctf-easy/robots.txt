@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /backup-2023/
+Disallow: /tmp-dev/
+# Note: /backup-2023/ is not for public eyes. Do NOT index.

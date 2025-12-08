@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Web Exploitation – Easy CTF</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Web Exploitation – Easy (But Not Too Easy)</h1>
+    <p>Welcome to this mini web CTF. There are multiple hidden flags on this site.</p>
+    <p>Each flag is in the format: <code>FLAG{...}</code></p>
+
+    <h2>Challenges</h2>
+
+    <ol>
+      <li>
+        <strong>Suspicious User Panel</strong><br />
+        There is a page that shows different user views based on a URL parameter.<br />
+        Try exploring: <code>/user?view=guest</code>
+      </li>
+      <li>
+        <strong>Hidden in the Script</strong><br />
+        Developers sometimes hide secrets in JavaScript files.<br />
+        Take a look at: <code>/script.js</code>
+      </li>
+      <li>
+        <strong>Robots Don’t Like Some Paths</strong><br />
+        Search engines are told not to index some paths. Maybe they hide something…<br />
+        Check: <code>/robots.txt</code>
+      </li>
+      <li>
+        <strong>Cookie Promotion</strong><br />
+        Somewhere on this site, your browser gets a cookie named <code>role</code>.<br />
+        Can you use that to access an admin-only page?<br />
+        Hint: Try visiting <code>/dashboard.html</code> and look at your cookies.
+      </li>
+    </ol>
+
+    <p class="note">
+      Use your browser dev tools (Network, Application/Storage, Console, etc.). No brute force needed.
+    </p>
+  </div>
+
+  <script>
+    // Give every visitor a default cookie if not set (for the cookie challenge)
+    if (!document.cookie.includes('role=')) {
+      // set default role=guest cookie
+      document.cookie = "role=guest; path=/";
+      console.log("Cookie set: role=guest");
+    }
+  </script>
+</body>
+</html>
