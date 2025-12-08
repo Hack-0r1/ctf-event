@@ -1,6 +1,7 @@
-These are internal faculty backup notes.
-
-Well done for following the trail from robots.txt to the mapping file,
-and then to this backup directory.
+===============================
+FACULTY BACKUP DIRECTORY
+===============================
 
 FLAG{R1_WEB_ROBOTS_03}
+
+You followed the hints correctly.

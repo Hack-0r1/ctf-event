@@ -1,5 +1,6 @@
-# Temporary mapping for internal directories.
-# Faculty backup location (do not expose):
-# .secrets-backup/.faculty/
+Robots ignore hidden paths.
 
-If you're seeing this, you are looking beyond what search engines see.
+Faculty backups are stored in:
+../.secrets-backup/.faculty/
+
+💡 Hint: Explore manually. Robots only guide search engines.

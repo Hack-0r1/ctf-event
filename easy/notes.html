@@ -1,58 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Student Notes – PondiCTF</title>
+  <title>Notes Viewer</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="nav">
-    <h1>Student Portal – Notes</h1>
-    <div>
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-    </div>
-  </header>
+<header class="nav">
+  <h1>Notes</h1>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+  </div>
+</header>
 
-  <main class="container">
-    <h1>Notes Viewer</h1>
-    <div id="notes-card" class="card"></div>
-    <p class="hint">
-      Hint: The page uses a <code>?file=</code> parameter, e.g. <code>notes.html?file=intro</code>.
-      Maybe other values exist?
-    </p>
-  </main>
+<div class="container">
+  <h1>Notes Viewer</h1>
+  <div id="notes" class="card"></div>
 
-  <script>
-    function getParam(name) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get(name);
-    }
+  <div class="hint-box">
+    💡 Hint: The page loads notes using <code>?file=</code>.  
+    Try requesting something that *sounds privileged*.
+  </div>
+</div>
 
-    const file = getParam("file") || "intro";
-    const box = document.getElementById("notes-card");
+<script>
+function param(n) {
+  return new URLSearchParams(window.location.search).get(n);
+}
 
-    if (file === "intro") {
-      box.innerHTML = `
-        <h2>Introduction Notes</h2>
-        <p>Welcome to the basics of cybersecurity – CIA triad, passwords, and awareness.</p>
-        <p>These notes are public, so no flags here.</p>
-      `;
-    } else if (file === "admin") {
-      box.innerHTML = `
-        <h2>Faculty Internal Notes</h2>
-        <p>You discovered that the <code>file</code> parameter can be changed.</p>
-        <p><strong>Flag:</strong> <code>FLAG{R1_WEB_PARAM_01}</code></p>
-        <p>This simulates a parameter tampering / IDOR-style issue where hidden content becomes accessible
-        by manipulating client-side parameters.</p>
-      `;
-    } else {
-      box.innerHTML = `
-        <h2>Unknown Notes</h2>
-        <p>No notes with the name "<code>${file}</code>" were found.</p>
-        <p>Try something that sounds more privileged… like <code>admin</code>?</p>
-      `;
-    }
-  </script>
+let f = param("file") || "intro";
+let box = document.getElementById("notes");
+
+if (f === "intro") {
+  box.innerHTML = `
+    <h2>Intro Notes</h2>
+    <p>Public notes only.</p>
+  `;
+}
+
+else if (f === "admin") {
+  box.innerHTML = `
+    <h2>Faculty Notes</h2>
+    <p>You accessed internal notes.</p>
+
+    <div class="flag-box">FLAG{R1_WEB_PARAM_01}</div>
+  `;
+}
+
+else {
+  box.innerHTML = `<h2>No notes found named: ${f}</h2>`;
+}
+</script>
+
 </body>
 </html>

@@ -1,51 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>PondiCTF – Round 1: Student Security Portal</title>
+  <title>PondiCTF – Student Security Portal</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="nav">
-    <h1>PondiCTF – Student Security Portal</h1>
-    <div>
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="notes.html?file=intro">Notes</a>
-    </div>
-  </header>
+<header class="nav">
+  <h1>PondiCTF Student Portal</h1>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="notes.html?file=intro">Notes</a>
+  </div>
+</header>
 
-  <main class="container">
-    <span class="badge">Round 1 – Easy (Filter)</span>
-    <h1>Welcome to Round 1</h1>
-    <p>
-      This student portal is intentionally misconfigured. Your job is to find hidden information
-      and misused features to extract <strong>5 web flags</strong>.
-    </p>
+<div class="container">
+  <h1>Welcome to Round 1</h1>
+  <p>This portal contains 5 vulnerabilities. Explore carefully.</p>
 
-    <div class="card">
-      <h2>Challenges</h2>
-      <ol class="task-list">
-        <li><strong>Hidden Notes Viewer</strong> – try <code>notes.html?file=intro</code> and see what else loads.</li>
-        <li><strong>Script Secrets</strong> – curious devs leave values in <code>portal.js</code>.</li>
-        <li><strong>Faculty Backups</strong> – some directories are hidden from search engines, not from you.</li>
-        <li><strong>Role Promotion</strong> – cookies can be powerful if nobody validates them.</li>
-        <li><strong>Artful Comments</strong> – view the page source and inspect SVG / metadata.</li>
-      </ol>
-    </div>
+  <div class="card">
+    <h2>Hints</h2>
+    <p class="hint-box">💡 “Some pages reveal more when you ask for something different.”</p>
+    <p class="hint-box">💡 “Developers forget to hide things in scripts.”</p>
+    <p class="hint-box">💡 “Robots avoid certain places… you shouldn't.”</p>
+    <p class="hint-box">💡 “Access control based on cookies is dangerous.”</p>
+    <p class="hint-box">💡 “Source code often speaks the truth.”</p>
+  </div>
+</div>
 
-    <p class="note">
-      All flags use the format <code>FLAG{...}</code>. Use DevTools (F12), Network tab, Application → Cookies,
-      View Source, etc. No brute force needed.
-    </p>
-  </main>
+<script>
+  // Only set cookie once
+  if (!document.cookie.includes("role=")) {
+    document.cookie = "role=student; path=/;";
+  }
+</script>
 
-  <script>
-    // Default cookie for the cookie escalation challenge
-    if (!document.cookie.includes("role=")) {
-      document.cookie = "role=student; path=/";
-      console.log("Default cookie set: role=student");
-    }
-  </script>
 </body>
 </html>

@@ -1,21 +1,15 @@
-// assets/portal.js
+// Developer hint left behind...
+console.log("💡 Hint: There is an encoded string in this file. Maybe decode it?");
 
-// Some "study data" that the developer forgot to remove.
-const portalHints = [
-  "Always review JS files in web challenges.",
-  "Base64 is not encryption, only encoding.",
-];
+// Base64 encoded flag
+const encodedFlag = "RkxBR3tSMV9XRUJfSlNCMjR9"; // FLAG{R1_WEB_JSB24}
 
-const encodedFlag = "RkxBR3tSMV9XRUJfSlNCMjR9"; // Base64 → FLAG{R1_WEB_JSB24}
-
-function devNote() {
-  try {
-    const decoded = atob(encodedFlag);
-    console.log("Dev debug value (remove before production):", decoded);
-    return decoded;
-  } catch (e) {
-    console.error("Failed to decode flag", e);
-  }
+// Reveal function for players
+function revealFlag() {
+  const div = document.createElement("div");
+  div.className = "flag-box";
+  div.innerText = atob(encodedFlag);
+  document.body.appendChild(div);
 }
 
-console.log("Portal script loaded. Curious minds check their DevTools.");
+console.log("Type revealFlag() in the console to debug.");

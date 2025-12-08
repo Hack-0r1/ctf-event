@@ -3,15 +3,15 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
+  font-family: system-ui, sans-serif;
+  background: #0f172a;
   color: #e2e8f0;
   margin: 0;
 }
 
 .nav {
-  background: rgba(15,23,42,0.96);
-  border-bottom: 1px solid #1f2937;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
   padding: 12px 24px;
   display: flex;
   justify-content: space-between;
@@ -19,67 +19,58 @@ body {
 }
 
 .nav h1 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin: 0;
 }
 
 .nav a {
-  color: #9ca3af;
+  color: #cbd5e1;
   text-decoration: none;
   margin-left: 16px;
   font-size: 0.9rem;
 }
 
 .nav a:hover {
-  color: #f9fafb;
+  color: #ffffff;
 }
 
 .container {
   max-width: 900px;
   margin: 40px auto;
-  background: rgba(15,23,42,0.97);
+  background: #1e293b;
   padding: 24px 28px;
   border-radius: 18px;
-  border: 1px solid #1f2937;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.8);
-}
-
-h1, h2, h3 {
-  color: #f9fafb;
-  margin-top: 0;
-}
-
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  background: #22c55e1a;
-  border: 1px solid #22c55e66;
-  color: #bbf7d0;
-}
-
-.task-list li {
-  margin-bottom: 8px;
+  border: 1px solid #334155;
 }
 
 .card {
+  background: #0f172a;
+  border: 1px solid #334155;
+  padding: 16px;
   border-radius: 14px;
-  border: 1px solid #1f2937;
-  padding: 16px 18px;
-  margin-top: 14px;
-  background: #020617;
+  margin-top: 16px;
 }
 
-code {
-  background: #020617;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.9em;
+.flag-box {
+  margin-top: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  color: white;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0px 0px 18px rgba(0, 150, 255, 0.45);
+  border: 2px solid #0ea5e9;
 }
 
-.note, .hint {
+/* Small hint UI block */
+.hint-box {
   margin-top: 12px;
+  background: #1e293b;
+  padding: 10px 14px;
+  border-left: 4px solid #06b6d4;
+  border-radius: 8px;
   font-size: 0.9rem;
-  color: #9ca3af;
+  opacity: .85;
 }
