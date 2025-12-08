@@ -1,5 +1,0 @@
-You weren't supposed to see this if you were a normal search engine.
-
-Congratulations, you found the faculty secret area via robots.txt.
-
-FLAG{R1_ROBOTS_LEAK}
