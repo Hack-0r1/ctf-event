@@ -1,41 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="/style.css" />
+  <meta charset="UTF-8">
+  <title>Dashboard – PondiCTF Student Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="assets/portal.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Dashboard</h1>
-    <div id="status"></div>
-    <p class="hint">
-      Hint: Check your <code>role</code> cookie. Maybe change it?
-    </p>
-  </div>
+  <!-- 
+    Deep inside the SVG metadata, someone left a note.
+    If you view raw source, you'll find something like:
+    FLAG{R1_WEB_SRC_05}
+  -->
+  <header class="nav">
+    <h1>Student Dashboard</h1>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="notes.html?file=intro">Notes</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Welcome to the Portal</h1>
+
+    <div id="role-card" class="card"></div>
+
+    <div class="card">
+      <h2>Status & Tips</h2>
+      <p>Use this portal as a training ground to think like an attacker but act like a defender.</p>
+      <ul>
+        <li>Who decides if you are a student or faculty?</li>
+        <li>What else is hiding in the source code &amp; scripts?</li>
+        <li>Can design elements hide comments?</li>
+      </ul>
+    </div>
+
+    <!-- Hidden SVG with comment-based flag -->
+    <svg width="0" height="0" style="position:absolute;left:-9999px;top:-9999px;">
+      <defs>
+        <metadata>
+          <!-- Designer note: remove FLAG{R1_WEB_SRC_05} before final release -->
+        </metadata>
+      </defs>
+    </svg>
+  </main>
 
   <script>
     function getCookie(name) {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
+      if (parts.length === 2) return parts.pop().split(";").shift();
       return null;
     }
 
-    const statusDiv = document.getElementById('status');
-    const role = getCookie('role') || 'guest';
+    const role = getCookie("role") || "student";
+    const card = document.getElementById("role-card");
 
-    if (role === 'admin') {
-      statusDiv.innerHTML = `
-        <p>You are logged in as: <strong>admin</strong></p>
-        <p>Welcome to the admin dashboard!</p>
-        <p><strong>Flag:</strong> <code>FLAG{COOKIE_PRIV_ESC}</code></p>
+    if (role === "faculty") {
+      card.innerHTML = `
+        <h2>Faculty View</h2>
+        <p>You managed to appear as <strong>faculty</strong> according to the cookie.</p>
+        <p><strong>Flag:</strong> <code>FLAG{R1_WEB_COOKIE_04}</code></p>
+        <p>This simulates broken authorization where the server blindly trusts a client-side role cookie.</p>
       `;
     } else {
-      statusDiv.innerHTML = `
-        <p>You are logged in as: <strong>${role}</strong></p>
-        <p>Only admins can see the secret flag here.</p>
-        <p>Try changing your <code>role</code> cookie value to <code>admin</code>.</p>
+      card.innerHTML = `
+        <h2>Student View</h2>
+        <p>You are currently logged in as <strong>${role}</strong>.</p>
+        <p>Only faculty accounts can see certain internal information here.</p>
+        <p class="hint">Check the <code>role</code> cookie in DevTools → Application → Cookies. What if it changed?</p>
       `;
     }
   </script>

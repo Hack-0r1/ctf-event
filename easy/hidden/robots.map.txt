@@ -1,0 +1,5 @@
+# Temporary mapping for internal directories.
+# Faculty backup location (do not expose):
+# .secrets-backup/.faculty/
+
+If you're seeing this, you are looking beyond what search engines see.

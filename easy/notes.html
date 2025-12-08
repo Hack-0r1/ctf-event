@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Notes – PondiCTF</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <h1>Student Portal – Notes</h1>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Notes Viewer</h1>
+    <div id="notes-card" class="card"></div>
+    <p class="hint">
+      Hint: The page uses a <code>?file=</code> parameter, e.g. <code>notes.html?file=intro</code>.
+      Maybe other values exist?
+    </p>
+  </main>
+
+  <script>
+    function getParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    const file = getParam("file") || "intro";
+    const box = document.getElementById("notes-card");
+
+    if (file === "intro") {
+      box.innerHTML = `
+        <h2>Introduction Notes</h2>
+        <p>Welcome to the basics of cybersecurity – CIA triad, passwords, and awareness.</p>
+        <p>These notes are public, so no flags here.</p>
+      `;
+    } else if (file === "admin") {
+      box.innerHTML = `
+        <h2>Faculty Internal Notes</h2>
+        <p>You discovered that the <code>file</code> parameter can be changed.</p>
+        <p><strong>Flag:</strong> <code>FLAG{R1_WEB_PARAM_01}</code></p>
+        <p>This simulates a parameter tampering / IDOR-style issue where hidden content becomes accessible
+        by manipulating client-side parameters.</p>
+      `;
+    } else {
+      box.innerHTML = `
+        <h2>Unknown Notes</h2>
+        <p>No notes with the name "<code>${file}</code>" were found.</p>
+        <p>Try something that sounds more privileged… like <code>admin</code>?</p>
+      `;
+    }
+  </script>
+</body>
+</html>

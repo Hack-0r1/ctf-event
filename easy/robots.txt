@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /backup-2023/
-Disallow: /tmp-dev/
-# Note: /backup-2023/ is not for public eyes. Do NOT index.
+Disallow: /.hidden/
+
+# Note for devs: don't forget to clean up mapping files after testing.
